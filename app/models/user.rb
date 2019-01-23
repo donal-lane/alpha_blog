@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  # MODEL VALIDATION
+  has_many :articles
+  # before an email is committed parse it to lowercase
+  before_save { self.email = email.downcase }
+  # Model valiations
   validates :username, presence: true,
                        uniqueness: { case_sensitive: false },
                        length: { minimum: 3, maximum: 25 }
@@ -9,5 +12,4 @@ class User < ActiveRecord::Base
                        length:      { maximum: 105 },
                        uniqueness:  { case_sensitive: false },
                        format:      { with: VALID_EMAIL_REGEX }
-
 end
