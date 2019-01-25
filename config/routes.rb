@@ -3,5 +3,9 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
 
-  resources :articles 
+  resources :articles
+
+  get 'signup',  to: 'users#new'
+  # post 'users',  to: 'users#create ' or
+  resources :users, except: [:new] # because we already have new 
 end
