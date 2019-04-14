@@ -7,3 +7,7 @@
 <h4 align="center"><%= @user.username %>'s articles</h4>
 <br>
 <%= render 'articles/partials/article', obj: @user.articles %>
+<div align="center">
+  <%= paginate @user_articles %>
+  <br>
+</div>

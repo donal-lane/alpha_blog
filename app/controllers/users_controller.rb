@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :update, :show]
+
   def index
-    @users = User.all
+    # @users = User.all
+    @users = User.order(:username).page params[:page]
   end
 
   def new
@@ -18,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
@@ -32,11 +34,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
+    # @users = User.order(:username).page params[:page]
+    @user_articles = User.order(:id).page params[:page]
   end
 
   private
     def user_params
       params.require(:user).permit(:username, :email, :password)
+    end
+
+    def set_user
+      @user = User.find(params[:id])
     end
 end
