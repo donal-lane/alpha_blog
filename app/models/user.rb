@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   paginates_per 5
-  has_many :articles
+  has_many :articles, dependent: :destroy 
   # before an email is committed parse it to lowercase
   before_save { self.email = email.downcase }
   # Model valiations
