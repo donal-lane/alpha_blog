@@ -7,5 +7,9 @@ Rails.application.routes.draw do
 
   get 'signup',  to: 'users#new'
   # post 'users',  to: 'users#create ' or
-  resources :users, except: [:new] # because we already have new 
+  resources :users, except: [:new] # because we already have new
+
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end
